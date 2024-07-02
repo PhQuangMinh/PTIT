@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n, m;
+vector<int> vt[1001];
+bool visited[1001];
 int parent[1001], sz[1001];
 struct edge{
     int u, v, w;
@@ -27,7 +29,6 @@ bool Union(int a, int b){
 }
 void inp(){
     cin >> n >> m;
-    canh.clear();
     for (int i=1;i<=m;i++){
         edge e;
         cin >> e.u >> e.v >> e.w;
@@ -49,25 +50,21 @@ void kruskal(){
             d+=e.w;
         }
     }
-    cout << d;
-}
-void solve(){
-    inp();
-    make_set();
-    kruskal();
+    if (mst.size()!=n-1){
+        cout << "Do thi khong lien thong!";
+    }
+    else{
+        cout << "MST: " << d << "\n";
+        for (auto it:mst){
+            cout << it.u << ' ' << it.v << ' ' << it.w << '\n';
+        }
+    }
 }
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    // #ifndef ONLINE_JUGDE
-    // freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
-    // #endif
-    int t=1;
-    cin >> t;
-    for (int i=1;i<=t;i++){
-        solve();
-        if (i!=t) cout << "\n";
-    }
+    inp();
+    make_set();
+    kruskal();
 }
