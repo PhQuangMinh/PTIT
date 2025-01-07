@@ -1,0 +1,27 @@
+import math
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def distance(seft, p):
+        return math.sqrt((seft.x-p.x)*(seft.x-p.x) + (seft.y-p.y)*(seft.y-p.y))
+def Decimal(x):
+    return float(x)
+if __name__ == '__main__':
+    t = int(input())
+    arr = []
+    for x in range(t):
+        arr += [float(i) for i in input().split()]
+    i = 0
+    for x in range(t):
+        p1 = Point(Decimal(arr[i]), Decimal(arr[i+1]))
+        p2 = Point(Decimal(arr[i+2]), Decimal(arr[i+3]))
+        p3 = Point(Decimal(arr[i+4]), Decimal(arr[i+5]))
+        d1 = p1.distance(p2)
+        d2 = p2.distance(p3)
+        d3 = p3.distance(p1)
+        if d1+d2>d3 and d2+d3>d1 and d1+d3>d2:
+            print(f"{math.sqrt((d1+d2+d3)*(d1-d3+d2)*(d1-d2+d3)*(d2-d1+d3))/4:.2f}")
+        else:
+            print("INVALID")
+        i += 6
